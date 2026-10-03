@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Varun Kumar Singh — Flutter Developer & Mobile App Developer specializing in Dart, Riverpod, Clean Architecture, and Firebase.">
+  <title>Varun Kumar Singh — Flutter & Mobile Developer</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Ambient Particle Canvas & Glow Effects -->
+  <canvas id="particle-canvas"></canvas>
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
+  <div class="ambient-orb orb-3"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#home" class="logo">
+          <img src="assets/profile.png" alt="Varun Kumar Singh" class="logo-avatar">
+          <div class="logo-text">Varun <span>Kumar Singh</span></div>
+        </a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#work">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+          <button id="recruiter-tour-btn" class="tour-btn" title="Start 60-Second Guided Tour">
+            <i class="fa-solid fa-bolt"></i> 60s Tour
+          </button>
+          <a href="assets/VarunSingh_Resume.pdf" class="nav-btn" download>
+            <span>Resume</span> <i class="fa-solid fa-arrow-down"></i>
+          </a>
+          <button id="sfx-toggle" class="sfx-btn active" title="Toggle SFX Audio Feedback">
+            <i class="fa-solid fa-volume-high"></i> SFX
+          </button>
+          <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Light/Dark Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+        <button class="mobile-toggle" aria-label="Toggle Navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Floating Guided Tour Control Bar -->
+  <div id="tour-hud-bar" class="tour-hud-bar">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span class="pulse-dot"></span>
+      <strong id="tour-hud-title" style="font-family: var(--font-heading); font-size: 13px;">Tour Active: Hero Overview</strong>
+      <span id="tour-hud-count" style="color: var(--flutter-cyan); font-family: var(--font-code); font-size: 12px;">(1 of 7)</span>
+    </div>
+    <button id="tour-stop-btn" class="tour-stop-btn">
+      <i class="fa-solid fa-square" style="color: #ef4444;"></i> Stop Tour
+    </button>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <div class="hero-content reveal">
+            <div class="status-badge">
+              <span class="pulse-dot"></span> Open to Flutter & Mobile Opportunities
+            </div>
+            
+            <h1 class="hero-title">
+              Crafting <span class="gradient-text">Mobile Apps</span> That Scale & Perform.
+            </h1>
+            
+            <p class="hero-description">
+              Flutter Developer with <strong>1.5+ years of experience</strong> building production cross-platform Android & iOS applications using Dart, Riverpod, Firebase, and Clean Architecture.
+            </p>
+            
+            <div class="hero-cta">
+              <a href="#work" class="btn-primary">
+                <span>Explore Featured Work</span>
+                <i class="fa-solid fa-arrow-down"></i>
+              </a>
+              <a href="#contact" class="btn-secondary">
+                <span>Let's Connect</span>
+                <i class="fa-regular fa-paper-plane"></i>
+              </a>
+            </div>
+
+            <div class="tech-badges">
+              <div class="tech-badge"><i class="fa-solid fa-mobile-screen-button"></i> Flutter 3.x</div>
+              <div class="tech-badge"><i class="fa-solid fa-code"></i> Dart</div>
+              <div class="tech-badge"><i class="fa-solid fa-layer-group"></i> Riverpod</div>
+              <div class="tech-badge"><i class="fa-solid fa-fire"></i> Firebase</div>
+              <div class="tech-badge"><i class="fa-solid fa-cubes"></i> Clean Architecture</div>
+            </div>
+          </div>
+
+          <!-- Interactive 3D Phone Simulator & Device Switcher -->
+          <div class="hero-art-wrapper reveal">
+            <div class="floating-badge badge-top">
+              <div class="badge-icon"><i class="fa-solid fa-bolt"></i></div>
+              <div class="badge-text">
+                <strong>+30% App Speed</strong>
+                <span>Riverpod & Rebuild Audits</span>
+              </div>
+            </div>
+
+            <div class="floating-badge badge-bottom">
+              <div class="badge-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="badge-text">
+                <strong>Biometric Security</strong>
+                <span>Flutter Secure Storage</span>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <div class="device-switcher-bar">
+                <button class="device-btn active" data-device="iphone"><i class="fa-brands fa-apple"></i> iPhone 16 Pro</button>
+                <button class="device-btn" data-device="pixel"><i class="fa-brands fa-android"></i> Pixel 9 Pro</button>
+                <button class="device-btn" data-device="tablet"><i class="fa-solid fa-tablet-screen-button"></i> Tablet / Web</button>
+              </div>
+
+              <div class="phone-mockup">
+              <div class="phone-notch">
+                <div class="camera-lens"></div>
+                <div class="speaker-grille"></div>
+              </div>
+
+              <div class="simulated-app">
+                <div class="app-header">
+                  <div class="app-user">
+                    <img src="assets/profile.png" alt="Varun Profile" class="app-avatar">
+                    <div>
+                      <div class="app-user-name">Varun Singh</div>
+                      <div class="app-user-role">Flutter Engineer</div>
+                    </div>
+                  </div>
+                  <div class="flutter-status-icon">
+                    <i class="fa-brands fa-flutter"></i> Live
+                  </div>
+                </div>
+
+                <div class="app-content">
+                  <div class="app-nav-tabs">
+                    <button class="tab-btn active" data-tab="dash">Dashboard</button>
+                    <button class="tab-btn" data-tab="hrms">HRMS</button>
+                    <button class="tab-btn" data-tab="ai">AI Companion</button>
+                  </div>
+
+                  <!-- Tab 1: Dashboard -->
+                  <div class="app-tab-pane active" id="pane-dash">
+                    <div class="app-card">
+                      <div class="app-card-title">Performance Boost</div>
+                      <div class="app-card-val">+30% FPS</div>
+                      <div class="app-card-sub">Widget Rebuild Audit</div>
+                    </div>
+                    <div class="app-list-item">
+                      <span>API Latency</span>
+                      <strong style="color: var(--flutter-cyan);">-25% (Firestore)</strong>
+                    </div>
+                    <div class="app-list-item">
+                      <span>State Engine</span>
+                      <strong style="color: #fff">Riverpod / Bloc</strong>
+                    </div>
+                    <div class="app-list-item">
+                      <span>Target Platforms</span>
+                      <strong style="color: #fff">Android & iOS</strong>
+                    </div>
+                  </div>
+
+                  <!-- Tab 2: HRMS -->
+                  <div class="app-tab-pane" id="pane-hrms">
+                    <div class="app-card" style="background: rgba(84, 197, 248, 0.1); border-color: rgba(84, 197, 248, 0.3);">
+                      <div class="app-card-title">HRMS Module</div>
+                      <div class="app-card-val" style="font-size: 16px;">Role Access Active</div>
+                      <div class="app-card-sub">Admin · HR · Manager · Staff</div>
+                    </div>
+                    <div class="app-list-item">
+                      <span>Attendance Sync</span>
+                      <strong style="color: var(--accent-emerald)">Real-Time</strong>
+                    </div>
+                    <div class="app-list-item">
+                      <span>Biometric Auth</span>
+                      <strong style="color: var(--flutter-cyan)">Encrypted</strong>
+                    </div>
+                  </div>
+
+                  <!-- Tab 3: AI Companion -->
+                  <div class="app-tab-pane" id="pane-ai">
+                    <div class="app-card" style="background: rgba(147, 51, 234, 0.15); border-color: rgba(147, 51, 234, 0.3);">
+                      <div class="app-card-title">Mobile AI Integration</div>
+                      <div class="app-card-val" style="font-size: 15px;">Smart Assistant</div>
+                      <div class="app-card-sub" style="color: #a855f7">REST Streaming API</div>
+                    </div>
+                    <div class="app-list-item">
+                      <span>Voice Prompts</span>
+                      <strong style="color: #a855f7">Active</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="app-bottom-bar">
+                  <i class="fa-solid fa-house bar-icon active"></i>
+                  <i class="fa-solid fa-cubes bar-icon"></i>
+                  <i class="fa-solid fa-chart-simple bar-icon"></i>
+                  <i class="fa-solid fa-user bar-icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics Banner Section -->
+    <section class="metrics-section">
+      <div class="container">
+        <div class="metrics-grid">
+          <div class="metric-card reveal">
+            <div class="metric-number">1.5+</div>
+            <div class="metric-label">Years Flutter & Mobile Dev</div>
+          </div>
+          <div class="metric-card reveal">
+            <div class="metric-number">30%</div>
+            <div class="metric-label">App Performance Improvement</div>
+          </div>
+          <div class="metric-card reveal">
+            <div class="metric-number">25%</div>
+            <div class="metric-label">API Latency Reduction</div>
+          </div>
+          <div class="metric-card reveal">
+            <div class="metric-number">15+</div>
+            <div class="metric-label">Production Bugs Resolved</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Flutter Terminal CLI Section -->
+    <section id="terminal" class="terminal-section">
+      <div class="container">
+        <div class="section-header reveal" style="text-align: center;">
+          <span class="section-subtitle">// INTERACTIVE FLUTTER SHELL</span>
+          <h2 class="section-title">Explore My Setup via <span class="gradient-text">CLI</span></h2>
+        </div>
+
+        <div class="terminal-box reveal">
+          <div class="terminal-bar">
+            <div class="terminal-dots">
+              <span class="terminal-dot dot-red"></span>
+              <span class="terminal-dot dot-yellow"></span>
+              <span class="terminal-dot dot-green"></span>
+            </div>
+            <div class="terminal-title">varun@flutter-dev ~ zsh</div>
+            <div class="terminal-actions">
+              <button class="term-btn" data-cmd="flutter doctor">flutter doctor</button>
+              <button class="term-btn" data-cmd="cat skills.dart">skills.dart</button>
+              <button class="term-btn" data-cmd="run hrms_app">run hrms_app</button>
+            </div>
+          </div>
+
+          <div class="terminal-body" id="terminal-body">
+            <div class="term-line">
+              <span class="term-prompt">varun@flutter-dev:~$</span> <span class="term-out">Welcome to Varun's Interactive Terminal. Click quick actions above or type commands below.</span>
+            </div>
+            <div class="term-line">
+              <span class="term-prompt">varun@flutter-dev:~$</span> <span class="term-out">Type <span class="term-cmd">help</span> to see all available CLI commands.</span>
+            </div>
+          </div>
+
+          <div style="padding: 12px 24px; background: #070a12; border-top: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 10px;">
+            <span style="color: var(--flutter-cyan); font-family: var(--font-code); font-size: 13px;">varun@flutter-dev:~$</span>
+            <input type="text" id="terminal-input" class="term-input" placeholder="Type 'flutter doctor' or 'cat experience' and press Enter..." autocomplete="off">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">01 / ABOUT ME</span>
+          <h2 class="section-title">Turning Ideas Into <span class="gradient-text">High-Performing Mobile Apps</span></h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              I specialize in transforming Figma designs into robust, cross-platform Android and iOS applications using <strong>Flutter and Dart</strong>. My core focus is on writing clean, maintainable code with scalable architecture patterns like Riverpod, Bloc, and Clean Architecture.
+            </p>
+            <p>
+              During my work at Tamar Software, I restructured Firestore database queries to cut API latency by <strong>25%</strong> and optimized widget rendering loops to boost overall app smoothness by <strong>30%</strong>.
+            </p>
+
+            <div class="about-highlights">
+              <div class="highlight-item">
+                <h4><i class="fa-solid fa-mobile-screen"></i> Cross-Platform</h4>
+                <p>Android & iOS pixel-perfect UI execution from Figma</p>
+              </div>
+              <div class="highlight-item">
+                <h4><i class="fa-solid fa-diagram-project"></i> Clean Architecture</h4>
+                <p>Modular data layer, domain repositories & Riverpod state</p>
+              </div>
+              <div class="highlight-item">
+                <h4><i class="fa-solid fa-key"></i> Security First</h4>
+                <p>Biometric auth & encrypted Flutter Secure Storage</p>
+              </div>
+              <div class="highlight-item">
+                <h4><i class="fa-solid fa-robot"></i> AI Mobile Exploration</h4>
+                <p>Integrating RESTful AI APIs for next-gen app experiences</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal" style="display: flex; justify-content: center;">
+            <div style="position: relative; max-width: 380px;">
+              <img src="assets/profile.png" alt="Varun Kumar Singh" style="width: 100%; border-radius: var(--radius-lg); border: 1px solid var(--glass-border-hover); box-shadow: var(--shadow-glow);">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">02 / CAREER JOURNEY</span>
+          <h2 class="section-title">Where I've Delivered <span class="gradient-text">Impact</span></h2>
+        </div>
+
+        <div class="timeline">
+          <!-- Job 1 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="job-header">
+                <div class="job-role">Associate Software Engineer <span>· Flutter Developer</span></div>
+                <div class="job-date">2025 — Present</div>
+              </div>
+              <div class="job-company"><i class="fa-solid fa-building"></i> Tamar Software LLP · Noida, UP</div>
+              <ul class="job-bullets">
+                <li>Engineered cross-platform Flutter applications for Android & iOS from Figma specs within an Agile environment.</li>
+                <li>Reduced API latency by <strong>25%</strong> through Firestore query optimization and async stream listeners.</li>
+                <li>Boosted app frame rate performance by <strong>30%</strong> via widget rebuild audits and Riverpod state management migration.</li>
+                <li>Implemented biometric login authentication paired with Flutter Secure Storage for encrypted JWT token persistence.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Job 2 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="job-header">
+                <div class="job-role">Flutter Developer Intern</div>
+                <div class="job-date">2024 — 2025</div>
+              </div>
+              <div class="job-company"><i class="fa-solid fa-building"></i> Tamar Software LLP · Noida, UP</div>
+              <ul class="job-bullets">
+                <li>Translated Figma UI mockups into responsive Flutter widget layouts across varied Android & iOS screen densities.</li>
+                <li>Integrated Firebase Authentication, Cloud Firestore, and resolved <strong>15+ critical bugs</strong> during QA cycles.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="work" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">03 / FEATURED WORK</span>
+          <h2 class="section-title">Production Apps & <span class="gradient-text">Projects</span></h2>
+        </div>
+
+        <div class="project-filters reveal">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="flutter">Flutter & Riverpod</button>
+          <button class="filter-btn" data-filter="firebase">Firebase & Backend</button>
+          <button class="filter-btn" data-filter="ai">AI Integration</button>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1: HRMS -->
+          <div class="project-card reveal" data-category="flutter firebase">
+            <div class="project-info">
+              <div>
+                <div class="project-tag">// ENTERPRISE FLUTTER APP</div>
+                <h3 class="project-title">HRMS — Human Resource Management System</h3>
+                <p class="project-desc">
+                  A comprehensive cross-platform mobile application covering real-time attendance tracking, leave management, and timesheet reports across 4 employee roles (Admin, HR, Manager, Staff).
+                </p>
+
+                <div class="project-features-list">
+                  <div class="pf-item"><i class="fa-solid fa-circle-check"></i> Role-Based Access</div>
+                  <div class="pf-item"><i class="fa-solid fa-circle-check"></i> Firestore Real-Time Sync</div>
+                  <div class="pf-item"><i class="fa-solid fa-circle-check"></i> Biometric Auth</div>
+                  <div class="pf-item"><i class="fa-solid fa-circle-check"></i> Riverpod Clean Arch</div>
+                </div>
+
+                <div class="project-tech">
+                  <div class="tech-badge">Flutter</div>
+                  <div class="tech-badge">Dart</div>
+                  <div class="tech-badge">Riverpod</div>
+                  <div class="tech-badge">Firebase Auth</div>
+                  <div class="tech-badge">Firestore</div>
+                </div>
+              </div>
+
+              <div class="project-links">
+                <a href="https://varunkrsingh-hrms-demo.web.app" target="_blank" class="btn-primary" style="padding: 10px 20px; font-size: 13px;">
+                  <span>Live Demo</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <button class="btn-secondary open-store-sheet" style="padding: 10px 16px; font-size: 13px;">
+                  <span>App Store Sheet</span> <i class="fa-brands fa-app-store-ios"></i>
+                </button>
+                <a href="https://github.com/ImVarunkr?tab=repositories" target="_blank" class="btn-secondary" style="padding: 10px 16px; font-size: 13px;">
+                  <span>Repository</span>
+                  <i class="fa-brands fa-github"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-preview">
+              <div class="preview-phone-frame">
+                <div class="preview-screen">
+                  <div class="mock-header"></div>
+                  <div class="mock-card">
+                    <div style="font-size: 10px; color: var(--flutter-cyan); font-weight: 700;">HRMS DASHBOARD</div>
+                    <div style="font-size: 14px; font-weight: 700; color: #fff; margin-top: 4px;">Attendance Verified</div>
+                  </div>
+                  <div class="mock-row">
+                    <div class="mock-box"></div>
+                    <div class="mock-box"></div>
+                  </div>
+                  <div class="mock-card" style="height: 110px; background: rgba(255,255,255,0.03);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: PulseAI -->
+          <div class="project-card reveal" data-category="flutter ai">
+            <div class="project-info">
+              <div>
+                <div class="project-tag">// FLUTTER + AI INTEGRATION</div>
+                <h3 class="project-title">PulseAI — Smart Assistant Mobile App</h3>
+                <p class="project-desc">
+                  An intelligent mobile assistant powered by LLM REST APIs, featuring voice/text input, streaming text token generation, history state caching, and sleek dark mode UI.
+                </p>
+
+                <div class="project-features-list">
+                  <div class="pf-item"><i class="fa-solid fa-circle-check"></i> Real-time AI Streaming</div>
+                  <div class="pf-item"><i class="fa-solid fa-circle-check"></i> Dio HTTP Client</div>
+                  <div class="pf-item"><i class="fa-solid fa-circle-check"></i> State Caching</div>
+                  <div class="pf-item"><i class="fa-solid fa-circle-check"></i> Voice Interface</div>
+                </div>
+
+                <div class="project-tech">
+                  <div class="tech-badge">Flutter</div>
+                  <div class="tech-badge">REST APIs</div>
+                  <div class="tech-badge">Dio</div>
+                  <div class="tech-badge">LLM APIs</div>
+                </div>
+              </div>
+
+              <div class="project-links">
+                <a href="https://pulse-ai-flutter.web.app" target="_blank" class="btn-primary" style="padding: 10px 20px; font-size: 13px;">
+                  <span>Live Web App</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <button class="btn-secondary open-store-sheet" style="padding: 10px 16px; font-size: 13px;">
+                  <span>App Store Sheet</span> <i class="fa-brands fa-app-store-ios"></i>
+                </button>
+                <a href="https://github.com/ImVarunkr?tab=repositories" target="_blank" class="btn-secondary" style="padding: 10px 20px; font-size: 13px;">
+                  <span>Explore Source</span>
+                  <i class="fa-brands fa-github"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-preview">
+              <div class="preview-phone-frame">
+                <div class="preview-screen">
+                  <div class="mock-header"></div>
+                  <div class="mock-card" style="background: rgba(147, 51, 234, 0.15); border-color: rgba(147, 51, 234, 0.3);">
+                    <div style="font-size: 10px; color: #a855f7; font-weight: 700;">AI STREAMING RESPONSE</div>
+                    <div style="font-size: 12px; color: #fff; margin-top: 4px;">"Generating Flutter Riverpod provider..."</div>
+                  </div>
+                  <div class="mock-card" style="height: 100px; background: rgba(255,255,255,0.03);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Figma ➔ Flutter Comparison Slider Section -->
+    <section class="comparison-section">
+      <div class="container">
+        <div class="section-header reveal" style="text-align: center;">
+          <span class="section-subtitle">// FIGMA TO FLUTTER PRECISION</span>
+          <h2 class="section-title">Figma Specs ➔ <span class="gradient-text">Flutter Pixel Perfect</span></h2>
+          <p style="color: var(--text-secondary); max-width: 560px; margin: 10px auto 0;">
+            Drag the handle below to compare Figma design wireframe vs live production Flutter app output!
+          </p>
+        </div>
+
+        <div class="comparison-wrapper reveal">
+          <div class="comparison-before">
+            <div class="comparison-tag"><i class="fa-brands fa-figma"></i> Figma Blueprint Wireframe</div>
+            <div style="font-size: 20px; font-weight: 700; color: #64748B;">[FIGMA DESIGN SPEC LAYOUT]</div>
+            <div style="font-size: 12px; color: var(--text-dim);">Design Tokens · Grid System · Vector Assets</div>
+          </div>
+
+          <div class="comparison-after">
+            <div class="comparison-tag" style="border-color: var(--flutter-cyan);"><i class="fa-brands fa-flutter" style="color: var(--flutter-cyan);"></i> Live Flutter Code Render</div>
+            <div style="font-size: 20px; font-weight: 700; color: #fff;">[PRODUCTION FLUTTER APP RESULT]</div>
+            <div style="font-size: 12px; color: var(--accent-emerald);">Riverpod State · 60 FPS · Clean Architecture</div>
+          </div>
+
+          <div class="comparison-handle"><i class="fa-solid fa-left-right"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Live Flutter Widget Inspector Sandbox Section -->
+    <section id="sandbox" class="sandbox-section">
+      <div class="container">
+        <div class="section-header reveal" style="text-align: center;">
+          <span class="section-subtitle">// LIVE FLUTTER CODE & UI PLAYGROUND</span>
+          <h2 class="section-title">Interactive <span class="gradient-text">Widget Inspector</span></h2>
+          <p style="color: var(--text-secondary); max-width: 560px; margin: 10px auto 0;">
+            Adjust widget parameters live below to generate dynamic Dart code & update the rendered Flutter widget in real time!
+          </p>
+        </div>
+
+        <div class="sandbox-container reveal">
+          <!-- Controls Panel -->
+          <div class="sandbox-controls-card">
+            <h3 style="font-family: var(--font-heading); font-size: 18px; color: var(--text-main);">
+              <i class="fa-solid fa-sliders" style="color: var(--flutter-cyan);"></i> Widget Property Controls
+            </h3>
+
+            <div class="control-group">
+              <div class="control-label">
+                <span>BorderRadius.circular</span>
+                <span id="radius-val">12px</span>
+              </div>
+              <input type="range" id="sandbox-radius" class="sandbox-slider" min="0" max="40" value="12">
+            </div>
+
+            <div class="control-group">
+              <div class="control-label">
+                <span>Primary Theme Color</span>
+              </div>
+              <select id="sandbox-color" class="sandbox-select">
+                <option value="#02569B">Flutter Deep Blue (#02569B)</option>
+                <option value="#00F0FF">Neon Cyan (#00F0FF)</option>
+                <option value="#9333EA">Purple Accent (#9333EA)</option>
+                <option value="#10B981">Emerald Green (#10B981)</option>
+              </select>
+            </div>
+
+            <div class="control-group">
+              <div class="control-label">
+                <span>Riverpod State Counter</span>
+              </div>
+              <button id="sandbox-counter-btn" class="btn-primary" style="justify-content: center; padding: 12px;">
+                <i class="fa-solid fa-plus"></i> Increment State (<span id="sandbox-counter-val">0</span>)
+              </button>
+            </div>
+          </div>
+
+          <!-- Code Display & Live Widget Render -->
+          <div class="sandbox-code-card">
+            <div class="code-header">
+              <span><i class="fa-brands fa-flutter" style="color: var(--flutter-cyan);"></i> live_widget_inspector.dart</span>
+              <span style="color: var(--accent-emerald);">● Compiled & Rendering</span>
+            </div>
+
+            <pre class="code-pre" id="sandbox-code-display"></pre>
+
+            <div class="sandbox-preview-box">
+              <div class="sandbox-widget" id="sandbox-target-widget">
+                <i class="fa-brands fa-flutter" style="font-size: 20px;"></i>
+                <span>Live Riverpod Widget</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive State Flow Visualizer Section -->
+    <section id="architecture" class="state-flow-section">
+      <div class="container">
+        <div class="section-header reveal" style="text-align: center;">
+          <span class="section-subtitle">// FLUTTER REACTIVE PIPELINE</span>
+          <h2 class="section-title">State Management <span class="gradient-text">Flow Engine</span></h2>
+          <p style="color: var(--text-secondary); max-width: 580px; margin: 10px auto 0;">
+            Select an architecture below to visualize the real-time reactive data pipeline flow!
+          </p>
+
+          <div style="margin-top: 20px;">
+            <select id="arch-selector" class="sandbox-select" style="padding: 10px 20px; font-size: 14px;">
+              <option value="riverpod">⚡ Riverpod 2.x (Recommended State Engine)</option>
+              <option value="bloc">🛡️ BLoC Pattern (Event-Driven Stream)</option>
+              <option value="provider">🔄 Provider (ChangeNotifier)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="state-flow-pipeline reveal">
+          <div class="state-step-card active">
+            <div class="step-num">STEP 01</div>
+            <div class="step-title"><i class="fa-solid fa-user-pointer" style="color: var(--flutter-cyan);"></i> User Action / Event</div>
+            <p style="font-size: 13px; color: var(--text-secondary);">User taps button or triggers Firestore stream listener.</p>
+          </div>
+
+          <div class="state-step-card active">
+            <div class="step-num">STEP 02</div>
+            <div class="step-title" id="state-step-2-title">StateNotifier / AsyncValue</div>
+            <p style="font-size: 13px; color: var(--text-secondary);" id="state-step-2-desc">Riverpod manages global reactive state with zero BuildContext dependency.</p>
+          </div>
+
+          <div class="state-step-card active">
+            <div class="step-num">STEP 03</div>
+            <div class="step-title"><i class="fa-brands fa-flutter" style="color: var(--accent-emerald);"></i> UI Consumer Rebuild</div>
+            <p style="font-size: 13px; color: var(--text-secondary);">Only targeted widgets rebuild (+30% FPS performance boost).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">04 / TECHNICAL TOOLKIT</span>
+          <h2 class="section-title">Skills & <span class="gradient-text">Technologies</span></h2>
+        </div>
+
+        <div class="skills-container">
+          <div class="skill-category-card reveal">
+            <div class="category-title">
+              <div class="category-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+              Mobile Development
+            </div>
+            <div class="skill-tags">
+              <span class="skill-chip"><i class="fa-brands fa-flutter"></i> Flutter 3.x</span>
+              <span class="skill-chip"><i class="fa-solid fa-code"></i> Dart</span>
+              <span class="skill-chip"><i class="fa-brands fa-android"></i> Android</span>
+              <span class="skill-chip"><i class="fa-brands fa-apple"></i> iOS</span>
+              <span class="skill-chip"><i class="fa-solid fa-palette"></i> Material Design</span>
+              <span class="skill-chip"><i class="fa-solid fa-ruler-combined"></i> Responsive UI</span>
+            </div>
+          </div>
+
+          <div class="skill-category-card reveal">
+            <div class="category-title">
+              <div class="category-icon"><i class="fa-solid fa-layer-group"></i></div>
+              State Management
+            </div>
+            <div class="skill-tags">
+              <span class="skill-chip">Riverpod</span>
+              <span class="skill-chip">Provider</span>
+              <span class="skill-chip">Bloc</span>
+              <span class="skill-chip">StateNotifier</span>
+            </div>
+          </div>
+
+          <div class="skill-category-card reveal">
+            <div class="category-title">
+              <div class="category-icon"><i class="fa-solid fa-server"></i></div>
+              Backend & Services
+            </div>
+            <div class="skill-tags">
+              <span class="skill-chip"><i class="fa-solid fa-fire"></i> Firebase Auth</span>
+              <span class="skill-chip">Cloud Firestore</span>
+              <span class="skill-chip">Cloud Functions</span>
+              <span class="skill-chip">REST APIs</span>
+              <span class="skill-chip">Dio HTTP</span>
+            </div>
+          </div>
+
+          <div class="skill-category-card reveal">
+            <div class="category-title">
+              <div class="category-icon"><i class="fa-solid fa-sitemap"></i></div>
+              Architecture & Security
+            </div>
+            <div class="skill-tags">
+              <span class="skill-chip">Clean Architecture</span>
+              <span class="skill-chip">MVVM</span>
+              <span class="skill-chip">Biometric Auth</span>
+              <span class="skill-chip">Flutter Secure Storage</span>
+              <span class="skill-chip">SharedPreferences</span>
+            </div>
+          </div>
+
+          <div class="skill-category-card reveal">
+            <div class="category-title">
+              <div class="category-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+              Tools & Workflow
+            </div>
+            <div class="skill-tags">
+              <span class="skill-chip"><i class="fa-brands fa-git-alt"></i> Git</span>
+              <span class="skill-chip"><i class="fa-brands fa-github"></i> GitHub</span>
+              <span class="skill-chip"><i class="fa-brands fa-figma"></i> Figma</span>
+              <span class="skill-chip">Android Studio</span>
+              <span class="skill-chip">VS Code</span>
+              <span class="skill-chip">Postman</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-subtitle">05 / ACADEMIC BACKGROUND</span>
+          <h2 class="section-title">Education</h2>
+        </div>
+
+        <div class="edu-card reveal">
+          <div>
+            <h3 class="edu-degree">B.Tech in Computer Science & Engineering</h3>
+            <p class="edu-school"><i class="fa-solid fa-graduation-cap"></i> Delhi Technical Campus, GGSIPU · Noida, UP</p>
+          </div>
+          <div class="edu-year">2020 — 2024</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="contact-card reveal">
+          <span class="section-subtitle">// GET IN TOUCH</span>
+          <h2 class="contact-title">Let's Build Something <span class="gradient-text">Exceptional</span></h2>
+          <p class="contact-desc">
+            Open to full-time Flutter Developer and Mobile App Developer roles. Click below to copy my email directly to your clipboard.
+          </p>
+
+          <div class="email-box" id="email-copy-box">
+            <i class="fa-regular fa-envelope" style="color: var(--flutter-cyan);"></i>
+            <span>varunkrsingh0511@gmail.com</span>
+            <i class="fa-regular fa-copy" style="font-size: 14px; opacity: 0.7;"></i>
+          </div>
+
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/varun-k-8a9b961b4" target="_blank" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://github.com/ImVarunkr?tab=repositories" target="_blank" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="assets/VarunSingh_Resume.pdf" download class="social-btn" title="Download Resume"><i class="fa-solid fa-file-pdf"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© <span id="year">2026</span> Varun Kumar Singh · Crafted with Flutter & Mobile Engineering Passion</p>
+    </div>
+  </footer>
+
+  <!-- Flutter Floating Action Button (FAB) Speed Dial -->
+  <div class="fab-wrapper">
+    <button class="fab-main-btn" id="fab-main" title="Quick Flutter Actions">
+      <i class="fa-brands fa-flutter"></i>
+    </button>
+    <div class="fab-menu" id="fab-menu">
+      <a href="mailto:varunkrsingh0511@gmail.com" class="fab-item">
+        <i class="fa-regular fa-envelope" style="color: var(--flutter-cyan);"></i> Email Direct
+      </a>
+      <a href="https://www.linkedin.com/in/varun-k-8a9b961b4" target="_blank" class="fab-item">
+        <i class="fa-brands fa-linkedin-in" style="color: #0077b5;"></i> LinkedIn Profile
+      </a>
+      <a href="assets/VarunSingh_Resume.pdf" download class="fab-item">
+        <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i> Resume (PDF)
+      </a>
+    </div>
+  </div>
+
+  <!-- App Store / Play Store Product Sheet Modal -->
+  <div class="modal-backdrop" id="app-store-modal">
+    <div class="app-store-modal">
+      <button class="modal-close-btn" id="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="app-store-header">
+        <div class="app-store-icon"><i class="fa-brands fa-flutter"></i></div>
+        <div class="app-store-details">
+          <h3>HRMS — Mobile App</h3>
+          <div class="app-store-developer">Developed by Varun Kumar Singh · Tamar Software</div>
+          <div class="app-meta-pills">
+            <span class="meta-pill">⭐ 4.9 (50+ Internal Reviews)</span>
+            <span class="meta-pill">v2.4.0 Stable</span>
+            <span class="meta-pill">iOS 14.0+ / Android 8.0+</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;">
+        <h4 style="color: #fff; font-size: 16px; margin-bottom: 8px;">Product Specifications:</h4>
+        <p>• Built using Flutter 3.x, Dart, Riverpod StateNotifier, and Cloud Firestore.</p>
+        <p>• Features biometric login (Touch ID / Face ID) with encrypted JWT tokens stored via Flutter Secure Storage.</p>
+        <p>• 25% reduction in API latency and 30% performance frame rate boost.</p>
+      </div>
+
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <a href="https://varunkrsingh-hrms-demo.web.app" target="_blank" class="btn-primary" style="flex: 1; justify-content: center;">
+          <i class="fa-solid fa-cloud-arrow-down"></i> Launch Live Web Demo
+        </a>
+        <a href="https://github.com/ImVarunkr?tab=repositories" target="_blank" class="btn-secondary" style="flex: 1; justify-content: center;">
+          <i class="fa-brands fa-github"></i> Inspect GitHub Source
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Varun's AI Portfolio Assistant Chat Widget (Bottom Left) -->
+  <button class="ai-chat-fab" id="ai-chat-fab" title="Ask Varun's AI Assistant">
+    <i class="fa-solid fa-robot"></i>
+  </button>
+
+  <div class="ai-chat-box" id="ai-chat-box">
+    <div class="ai-chat-header">
+      <div class="ai-chat-title">
+        <i class="fa-solid fa-bot" style="color: var(--accent-purple);"></i>
+        <span>Varun's AI Assistant</span>
+      </div>
+      <button id="ai-chat-close" style="background: none; border: none; color: #fff; cursor: pointer; font-size: 16px;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="ai-messages" id="ai-messages">
+      <div class="msg-ai">
+        👋 Hi! I'm Varun's AI Assistant. Ask me anything about Varun's Flutter experience, Riverpod expertise, HRMS app, or current company!
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;">
+          <button class="ai-chip-suggest" data-query="current company">🏢 Current Company</button>
+          <button class="ai-chip-suggest" data-query="skills">🛠️ Core Skills</button>
+          <button class="ai-chip-suggest" data-query="hrms app">📱 HRMS App</button>
+          <button class="ai-chip-suggest" data-query="impact">⚡ Achievements</button>
+          <button class="ai-chip-suggest" data-query="contact">📄 Contact Info</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-chat-input-wrapper">
+      <input type="text" id="ai-chat-input" class="ai-input" placeholder="Ask e.g. 'experience', 'riverpod'..." autocomplete="off">
+      <button id="ai-chat-send" class="btn-primary" style="padding: 8px 14px; font-size: 13px;">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i> Email copied to clipboard!
+  </div>
+
+  <!-- Interactive Engine Script -->
+  <script src="script.js"></script>
+</body>
+</html>
